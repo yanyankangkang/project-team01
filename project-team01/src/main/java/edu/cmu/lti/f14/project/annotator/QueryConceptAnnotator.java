@@ -96,7 +96,8 @@ public class QueryConceptAnnotator extends JCasAnnotator_ImplBase  {
         conceptSearchResult.setConcept(concept);
         // set attribute in the SearchResult
         conceptSearchResult.setText(finding.getConcept().getLabel());
-        conceptSearchResult.setUri(finding.getConcept().getUri());
+        conceptSearchResult.setUri(finding.getConcept().getUri().replace("2014", "2012"));
+        //finding.getConcept().getUri().replace("2014", "2012")
         conceptSearchResult.setScore(finding.getScore());
         conceptSearchResult.setRank(rank);
         conceptSearchResult.setQueryString(queryText);
