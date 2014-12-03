@@ -13,8 +13,8 @@ import edu.cmu.lti.oaqa.type.answer.CandidateAnswerVariant;
 
 
 /** A search result.
- * Updated by JCasGen Sat Oct 18 19:40:19 EDT 2014
- * XML source: /home/mog/dev/11791/project/project-team01-archetype/src/main/resources/type/OAQATypes.xml
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+ * XML source: /Users/zhiyuel/git/project-team01/project-team01/src/main/resources/type/OAQATypes.xml
  * @generated */
 public class SearchResult extends TOP {
   /** @generated

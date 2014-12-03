@@ -50,7 +50,7 @@ public class PosQueryAnnotator extends JCasAnnotator_ImplBase {
 					.getGeneSpans(queString);
 			 AtomicQueryConcept ato = new AtomicQueryConcept(aJCas);
 			 String ret="";
-			 String operator=" ";
+			 String operator=" AND ";
 			for (Map.Entry<Integer, Integer> entry : begin2end.entrySet()) {
 				// Create an atomic query first
 			        String text=queString.substring(entry.getKey(), entry.getValue());
