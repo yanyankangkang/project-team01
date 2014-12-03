@@ -736,7 +736,12 @@
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>edu.cmu.lti.oaqa.type.QueryConcept</elementType>
         </featureDescription>
-        </features>
+        <featureDescription>
+          <name>ConceptQueryText</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+      </features>
     </typeDescription>
   <typeDescription>
       <name>edu.cmu.lti.oaqa.type.kb.Relation</name>

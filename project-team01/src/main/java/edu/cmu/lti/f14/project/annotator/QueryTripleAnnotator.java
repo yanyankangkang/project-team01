@@ -77,7 +77,7 @@ public class QueryTripleAnnotator extends JCasAnnotator_ImplBase {
                 .findLinkedLifeDataEntitiesPaged(queryText, 0);
         } catch (IOException e) {
           // TODO Auto-generated catch block
-          e.printStackTrace();
+//          e.printStackTrace();
         }
         // System.out.println("LinkedLifeData: " + linkedLifeDataResult.getEntities().size());
         // rank
