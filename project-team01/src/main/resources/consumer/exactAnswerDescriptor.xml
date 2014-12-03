@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <implementationName>edu.cmu.lti.f14.project.consumer.ExactAnswerEvaluator</implementationName>
   <processingResourceMetaData>
@@ -22,11 +23,7 @@
         </value>
       </nameValuePair>
     </configurationParameterSettings>
-    <typeSystemDescription>
-      <imports>
-        <import name="type.OAQATypes"/>
-      </imports>
-    </typeSystemDescription>
+    <typeSystemDescription/>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>

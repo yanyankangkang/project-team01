@@ -9,13 +9,13 @@
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>outputFile</name>
+        <name>goldFile</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
-      <configurationParameter>
-        <name>goldFile</name>
+    <configurationParameter>
+        <name>outputFile</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
@@ -25,13 +25,13 @@
       <nameValuePair>
         <name>goldFile</name>
         <value>
-          <string>/YesNoGoldAnswer.json</string>
+          <string>/BioASQ-SampleData1B.json</string>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>outputFile</name>
         <value>
-          <string>output.json</string>
+          <string>/output.json</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

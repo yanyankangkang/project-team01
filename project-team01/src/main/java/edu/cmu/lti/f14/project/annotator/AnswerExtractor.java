@@ -17,6 +17,7 @@ import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.TOP;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import util.Logisitic;
 import util.TypeFactory;
 
 import com.google.common.collect.Lists;
@@ -31,10 +32,16 @@ import edu.cmu.lti.oaqa.type.retrieval.Passage;
  * @author zhouchel
  *
  */
+
 public class AnswerExtractor extends JCasAnnotator_ImplBase {
   private static BufferedReader in = null;
   private HashMap<String, Integer> dic;
-
+  private double theta[] = {-0.9792382152749206,
+		  0.33192695989807786,
+		  -0.03318419465995747,
+		  1.217830583080035,
+		  0.7621497593879752};
+  public Logisitic Model = new Logisitic(4);
   @Override
   /**
    * Provides access to external resources (other than the CAS)<br>
@@ -72,8 +79,10 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
     // TODO Auto-generated method stub
 
     FSIterator<TOP> iter = aJCas.getJFSIndexRepository().getAllIndexedFS(AtomicQueryConcept.type);
-
+   
     while (iter.isValid() && iter.hasNext()) {
+      String ans = null;
+      Answer answer = TypeFactory.createAnswer(aJCas, ans);
       AtomicQueryConcept atomicQuestion = (AtomicQueryConcept) iter.next();
       // text has been add AND
       String query = atomicQuestion.getText();
@@ -82,7 +91,11 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
       if (query == null || query.isEmpty()) {
         continue;
       }
-
+      List<Double> pScore = new ArrayList<Double>();
+      List<Double> nScore = new ArrayList<Double>();
+      List<Double> secScore = new ArrayList<Double>();
+      List<Double> docScore = new ArrayList<Double>();
+      
       List<String> nes = Lists.newArrayList();
 
       // select entities from query
@@ -99,31 +112,58 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
         String[] terms = text.split("\\s+");
         Integer w = null;
         Double negOrPos = 0.0;
+        
+        Double posScore = 0.0;
+        Double negScore = 0.0;
+        Double sectionScore = 0.0;
         System.out.println(text);
         for (String term : terms) {
           w = dic.get(term);
           if (w != null) {
             negOrPos += w;
+            if (w > 0){
+            	posScore += w;
+            }
+            else{
+            	negScore -= w;
+            }
             //System.err.println("Positive/Negative: " + w);
           }
         }
+        pScore.add(posScore);
+        nScore.add(negScore);
+     
         String sections = p.getBeginSection();
-        if (sections.equals("title"))
+        if (sections.equals("title")){
           negOrPos += 1;
+          sectionScore = 1.0;
+        }
         else {
           String[] section = sections.split("\\.");
-          if ((section[1]).equals("0"))
+          if ((section[1]).equals("0")){
             negOrPos += 2.0;
-          else
+          	sectionScore = 2.0;
+          }
+          else{
             negOrPos += 0.0;
+          	sectionScore = 0.1;
+          }
         }
-
+        secScore.add(sectionScore);
+        docScore.add(p.getScore());
+     
+        
         negOrPos += p.getScore() * 5;
         //score += 1.0 / p.getRank();
         weight.add(negOrPos);
         System.out.println(negOrPos);
       }
-      int yes = 0, no = 0;
+      
+       answer.setPosScore(giveScore(pScore));
+       answer.setNegScore(giveScore(nScore));
+       answer.setSectionScore(giveScore(secScore));
+       answer.setDocScore(giveScore(docScore));
+   /*   int yes = 0, no = 0;
       double threshold = 5.5;
       for (Double w : weight) {
         if (w > threshold) {
@@ -132,11 +172,24 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
         else 
           no++;
       }
-      String ans;
-      if (yes > no)
+     
+      if (yes > no)	
         ans = "yes";
       else
-        ans = "no";   
+        ans = "no"; 
+     */
+      double x[] = new double[4];
+      x[0] = answer.getPosScore();
+      x[1] = answer.getNegScore();
+      x[2] = answer.getSectionScore();
+      x[3] = answer.getDocScore();
+      if (Model.Classify(x, theta)){
+    	  ans = "yes";
+      }
+      else{
+    	  ans = "no";
+      }
+      answer.setText(ans);
       /*
        * for (FeatureStructure fs : aJCas.getAnnotationIndex(Passage.type)) { Passage passage =
        * (Passage) fs; String text = passage.getText(); // extract answer System.out.println(text);
@@ -146,13 +199,27 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
       // evaluate
 
       // create Answer
-      Answer answer = TypeFactory.createAnswer(aJCas, ans);
+     
       answer.addToIndexes();
+      //System.out.println(answer.getDocScore());
       System.out.println(ans);
     }
 
   }
-
+  Double getSum(int N){
+	  return 1.0 * (1+N)*N/2;
+  }
+  Double giveScore(List<Double> scores){
+	  Double score = 0.0;
+      Double N = getSum(scores.size());
+      Double w = scores.size() * 1.0;
+      for (Double pos : scores){
+    	  score += w / N * pos ;
+    	  w--;
+      }
+      System.out.println(scores.size() + "score:" + score);
+      return score; 
+  }
   private List<String> selectEntities(List<String> nes, AtomicQueryConcept atomicQuestion) {
     // TODO Auto-generated method stub
     return null;

@@ -212,6 +212,32 @@
           <description>Rank of this result in the original hit-list.</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>docScore</name>
+          <description>doc similarity with query
+</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>posScore</name>
+          <description>positive terms</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>negScore</name>
+          <description>negative term</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>sectionScore</name>
+          <description>section in one paragraph</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>goldAnswer</name>
+          <description/>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>

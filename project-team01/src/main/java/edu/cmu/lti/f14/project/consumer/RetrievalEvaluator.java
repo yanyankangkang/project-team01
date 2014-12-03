@@ -9,8 +9,10 @@ import static java.util.stream.Collectors.toList;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -161,6 +163,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 		while (conceptIter.hasNext()) {
 			ConceptSearchResult cpt = (ConceptSearchResult) conceptIter.next();
 			conceptMap.put(cpt.getRank(), cpt.getUri());
+		//	System.out.println(cpt.getScore());
 		}
 
 		FSIterator<TOP> docIter = jcas.getJFSIndexRepository().getAllIndexedFS(
@@ -213,6 +216,10 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 		} // test.add((ArrayList<String>) goldDocs);
 			// System.out.println("******" + myDocs.size());
 			// RetrievalMeasures evaluator = new RetrievalMeasures();
+		if (goldConcepts == null){
+			System.out.println("bug");
+		}
+		//System.out.println("concpets: " + goldConcepts.size() + myConcepts.size());
 		Double[] precisions = new Double[3];
 		Double[] recalls = new Double[3];
 		Double[] fscores = new Double[3];
@@ -279,7 +286,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 		map = RetrievalMeasures.MAP(avgPrecision);
 
 		gmap = RetrievalMeasures.GMAP(avgPrecision);
-
+		
 		System.out.println("*************************");
 		for (int i = 0; i < length; i++) {
 			System.out.println("\n\nQuery" + i + ":");
