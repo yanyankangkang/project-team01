@@ -26,8 +26,8 @@ public class RetrievalMeasures {
         overallTP[type]++;
       }
     }
-    if (type == 1)
-    	System.out.println("positive: " + positiveTrue);
+ //   if (type == 1)
+ //   	System.out.println("positive: " + positiveTrue);
     overallRetrieved[type] += ret.size();
     return (double)positiveTrue/ret.size();
   }

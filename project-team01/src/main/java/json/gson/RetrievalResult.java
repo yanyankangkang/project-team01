@@ -77,6 +77,7 @@ public class RetrievalResult {
 		result = prime * result
 				+ ((documents == null) ? 0 : documents.hashCode());
 		result = prime * result + ((triples == null) ? 0 : triples.hashCode());
+		result = prime * result + ((snippets == null) ? 0 : snippets.hashCode());
 		return result;
 	}
 
@@ -114,6 +115,11 @@ public class RetrievalResult {
 				return false;
 		} else if (!triples.equals(other.triples))
 			return false;
+		if (snippets == null) {
+		      if (other.snippets != null)
+		        return false;
+		    } else if (!snippets.equals(other.snippets))
+		      return false;
 		return true;
 	}
 
@@ -156,4 +162,6 @@ public class RetrievalResult {
 	public void setTriples(List<Triple> triples) {
 		this.triples = triples;
 	}
+	
+	
 }

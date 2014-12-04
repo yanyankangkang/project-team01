@@ -177,7 +177,7 @@ public class ExactAnswerEvaluator extends CasConsumer_ImplBase {
 	  double all = TP + TN + FP + FN; 	 
 	  double total_agreement = TP + TN;
 	  double agreement_by_chance = (TP + FP) * (TP + FN) / all  +  (TN + FP) * (TN + FN) / all;
-	  System.out.println("agreement_by_chance:" + agreement_by_chance);
+	//  System.out.println("agreement_by_chance:" + agreement_by_chance);
 	  return (total_agreement - agreement_by_chance) / (all -agreement_by_chance); 
   }
   
@@ -189,7 +189,6 @@ public class ExactAnswerEvaluator extends CasConsumer_ImplBase {
     super.collectionProcessComplete(arg0);
     
     writer.close();
-    System.out.println("no:" + no);
     System.out.println("confusion matrix: \n");
     System.out.println(exactAnswerTP + "\t" + exactAnswerFP + "\n");
     System.out.println(exactAnswerFN + "\t" + exactAnswerTN + "\n");

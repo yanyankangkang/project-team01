@@ -217,7 +217,7 @@ public class AnswerExtractor extends JCasAnnotator_ImplBase {
     	  score += w / N * pos ;
     	  w--;
       }
-      System.out.println(scores.size() + "score:" + score);
+      //System.out.println(scores.size() + "score:" + score);
       return score; 
   }
   private List<String> selectEntities(List<String> nes, AtomicQueryConcept atomicQuestion) {

@@ -50,6 +50,7 @@ import edu.cmu.lti.oaqa.type.answer.Answer;
 import edu.cmu.lti.oaqa.type.input.Question;
 import edu.cmu.lti.oaqa.type.retrieval.ConceptSearchResult;
 import edu.cmu.lti.oaqa.type.retrieval.Document;
+import edu.cmu.lti.oaqa.type.retrieval.Passage;
 import edu.cmu.lti.oaqa.type.retrieval.TripleSearchResult;
 
 /**
@@ -187,11 +188,21 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 					new Triple(temp.getSubject(), temp.getPredicate(), temp
 							.getObject()));
 		}
+		
+		FSIterator<TOP> snipIter = jcas.getJFSIndexRepository().getAllIndexedFS(
+				Passage.type);
+		Map<Integer, Snippet> snipMap = new TreeMap<Integer,Snippet>();
+		while (snipIter.hasNext()) {
+			Passage snip = (Passage) snipIter.next();
+			// It conflict with gson.Triple
+			snipMap.put(snip.getRank(), new Snippet(snip.getUri(), snip.getText(), snip.getOffsetInBeginSection(),
+		              snip.getOffsetInEndSection(), snip.getBeginSection(), snip.getEndSection()));
+		}
 		// System.out.println("dasdad:" + docMap.size());
 		List<String> myConcepts = new ArrayList<String>(conceptMap.values());
 		List<String> myDocs = new ArrayList<String>(docMap.values());
 		List<Triple> myTriples = new ArrayList<Triple>(triMap.values());
-		List<Snippet> mySnippets = new ArrayList<Snippet>();// 
+		List<Snippet> mySnippets = new ArrayList<Snippet>(snipMap.values());// 
 		 FSIterator<TOP> ansIter = jcas.getJFSIndexRepository().getAllIndexedFS(Answer.type);
 		 Answer exactAnswer = (Answer) ansIter.next();
 		retrievalRes.add(new RetrievalResult(question.getId(), question
@@ -306,7 +317,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 		}
 		System.out.println("\n*************************");
 		System.err.println("oh shit!!!!!!!!!!!");
-		System.out.println("There are " + length + " Queries:\n");
+		System.out.println("There are " + length + " Queries:");
 		System.out.print("\nMAP:");
 		for (int j = 0; j < map.length; j++)
 			System.out.print(map[j] + "\t");
@@ -321,6 +332,14 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
 		for (int j = 0; j < gmap.length; j++)
 			System.out.print(RetrievalMeasures.overallTP[j] * 1.0
 					/ RetrievalMeasures.overallGold[j] + "\t");
+		System.out.print("\nfinalF-measure:");
+		for (int j = 0; j < gmap.length; j++){
+			double p = RetrievalMeasures.overallTP[j] * 1.0
+					/ RetrievalMeasures.overallRetrieved[j];
+			double r = RetrievalMeasures.overallTP[j] * 1.0
+					/ RetrievalMeasures.overallGold[j];
+			System.out.print(2*p*r/(p+r) + "\t");
+		}
 		System.out.println();
 	}
 }
