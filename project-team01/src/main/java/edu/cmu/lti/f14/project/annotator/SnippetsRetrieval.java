@@ -103,6 +103,8 @@ public class SnippetsRetrieval extends JCasAnnotator_ImplBase {
     for (Document doc : docs) {
       // create a passage based on the title of doc
       Passage p = new Passage(jcas);
+      if (doc.getTitle() == null)
+    	  continue;
       p.setBeginSection("title");
       p.setEndSection("title");
       p.setTitle(doc.getTitle());
