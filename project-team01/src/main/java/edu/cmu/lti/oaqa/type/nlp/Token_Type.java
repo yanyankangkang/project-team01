@@ -14,7 +14,11 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.tcas.Annotation_Type;
 
 /** Annotation on a token, which may have arguments if they are predicates; useful in transforming text into a "logical form", with affordances similar to the ones provided in Extended WordNet and the like. --- Source: Murdock
+<<<<<<< HEAD
  * Updated by JCasGen Tue Dec 02 00:06:35 EST 2014
+=======
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+>>>>>>> origin/master
  * @generated */
 public class Token_Type extends Annotation_Type {
   /** @generated 

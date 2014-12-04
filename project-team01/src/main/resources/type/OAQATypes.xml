@@ -214,8 +214,7 @@
         </featureDescription>
       <featureDescription>
           <name>docScore</name>
-          <description>doc similarity with query
-</description>
+          <description>doc similarity with query</description>
           <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
         <featureDescription>

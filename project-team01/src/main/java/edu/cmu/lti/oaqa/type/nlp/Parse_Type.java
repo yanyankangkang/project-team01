@@ -14,7 +14,11 @@ import org.apache.uima.cas.Feature;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 /** A data structure that represents various NLP annotations from a parser, e.g. lists of tokens, semantic roles, etc.
+<<<<<<< HEAD
  * Updated by JCasGen Tue Dec 02 00:06:35 EST 2014
+=======
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+>>>>>>> origin/master
  * @generated */
 public class Parse_Type extends TOP_Type {
   /** @generated 

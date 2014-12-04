@@ -13,7 +13,11 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A document search result.
+<<<<<<< HEAD
  * Updated by JCasGen Tue Dec 02 00:06:35 EST 2014
+=======
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+>>>>>>> origin/master
  * @generated */
 public class Document_Type extends SearchResult_Type {
   /** @generated 

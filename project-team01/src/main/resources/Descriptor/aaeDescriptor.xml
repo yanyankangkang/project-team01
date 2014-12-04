@@ -36,8 +36,8 @@
       <fixedFlow>
         <node>posQueryDescriptor</node>
         <node>queryCombDescriptor</node>
-        <node>documentDescriptor</node>
         <node>conceptDescriptor</node>
+        <node>documentDescriptor</node>
         <node>docRankDescriptor</node>
         <node>snippetRetrievalDescriptor</node>
         <node>answerExtractorDescriptor</node>

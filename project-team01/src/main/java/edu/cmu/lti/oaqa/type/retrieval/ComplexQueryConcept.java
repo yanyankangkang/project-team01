@@ -11,8 +11,13 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
+<<<<<<< HEAD
  * Updated by JCasGen Tue Dec 02 00:06:35 EST 2014
  * XML source: /home/mac/git/project-team01/project-team01/src/main/resources/type/OAQATypes.xml
+=======
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+ * XML source: /Users/zhiyuel/git/project-team01/project-team01/src/main/resources/type/OAQATypes.xml
+>>>>>>> origin/master
  * @generated */
 public class ComplexQueryConcept extends QueryConcept {
   /** @generated
@@ -106,6 +111,28 @@ public class ComplexQueryConcept extends QueryConcept {
     if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_operatorArgs == null)
       jcasType.jcas.throwFeatMissing("operatorArgs", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
     jcasType.ll_cas.ll_setRefValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_operatorArgs, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: ConceptQueryText
+
+  /** getter for ConceptQueryText - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public String getConceptQueryText() {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_ConceptQueryText == null)
+      jcasType.jcas.throwFeatMissing("ConceptQueryText", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_ConceptQueryText);}
+    
+  /** setter for ConceptQueryText - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setConceptQueryText(String v) {
+    if (ComplexQueryConcept_Type.featOkTst && ((ComplexQueryConcept_Type)jcasType).casFeat_ConceptQueryText == null)
+      jcasType.jcas.throwFeatMissing("ConceptQueryText", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    jcasType.ll_cas.ll_setStringValue(addr, ((ComplexQueryConcept_Type)jcasType).casFeatCode_ConceptQueryText, v);}    
   }
 
     

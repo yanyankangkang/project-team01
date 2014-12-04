@@ -13,7 +13,11 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** A hierarchical query concept represented by a query operation on a list of concepts
+<<<<<<< HEAD
  * Updated by JCasGen Tue Dec 02 00:06:35 EST 2014
+=======
+ * Updated by JCasGen Tue Dec 02 22:43:32 EST 2014
+>>>>>>> origin/master
  * @generated */
 public class ComplexQueryConcept_Type extends QueryConcept_Type {
   /** @generated 
@@ -92,6 +96,30 @@ public class ComplexQueryConcept_Type extends QueryConcept_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_operatorArgs, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_ConceptQueryText;
+  /** @generated */
+  final int     casFeatCode_ConceptQueryText;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public String getConceptQueryText(int addr) {
+        if (featOkTst && casFeat_ConceptQueryText == null)
+      jcas.throwFeatMissing("ConceptQueryText", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_ConceptQueryText);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setConceptQueryText(int addr, String v) {
+        if (featOkTst && casFeat_ConceptQueryText == null)
+      jcas.throwFeatMissing("ConceptQueryText", "edu.cmu.lti.oaqa.type.retrieval.ComplexQueryConcept");
+    ll_cas.ll_setStringValue(addr, casFeatCode_ConceptQueryText, v);}
+    
+  
 
 
 
@@ -111,6 +139,10 @@ public class ComplexQueryConcept_Type extends QueryConcept_Type {
  
     casFeat_operatorArgs = jcas.getRequiredFeatureDE(casType, "operatorArgs", "uima.cas.FSList", featOkTst);
     casFeatCode_operatorArgs  = (null == casFeat_operatorArgs) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_operatorArgs).getCode();
+
+ 
+    casFeat_ConceptQueryText = jcas.getRequiredFeatureDE(casType, "ConceptQueryText", "uima.cas.String", featOkTst);
+    casFeatCode_ConceptQueryText  = (null == casFeat_ConceptQueryText) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_ConceptQueryText).getCode();
 
   }
 }
